@@ -1,3 +1,4 @@
+package Modelo;
 
 public enum TipoCtt{
     FAMILIA,

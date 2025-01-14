@@ -1,3 +1,4 @@
+package Modelo;
 
 public class Contato extends Pessoa {
     private String email;
