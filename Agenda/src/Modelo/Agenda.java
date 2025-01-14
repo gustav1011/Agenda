@@ -1,8 +1,6 @@
-package Modelo;
-
+package modelo;
 
 import java.util.*;
-
 
 public class Agenda {
   private String nome;

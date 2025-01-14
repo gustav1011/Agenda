@@ -1,4 +1,4 @@
-package Modelo;
+package modelo;
 
 public class Contato extends Pessoa {
     private String email;
