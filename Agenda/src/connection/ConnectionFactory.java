@@ -3,6 +3,7 @@ package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.*;
 
 public class ConnectionFactory {
 
@@ -11,10 +12,10 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://localhost:3306/db_agenda"; // Database URL
 
     // Static method to establish a connection to the database
-    public static Connection connectionToMyDb() {
+    public static Connection connectionToMyDb(){
         try {
             // Load the MySQL JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
             // Get a connection to the database
             return DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -22,10 +23,21 @@ public class ConnectionFactory {
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL Driver not found: " + e.getMessage());
             throw new RuntimeException(e);
+           // e.printStackTrace();
 
         } catch (SQLException e) {
             System.err.println("Error connecting to the database: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) throws SQLException {
+        Connection con = connectionToMyDb();
+
+        if(con!= null){
+            System.out.println("Connection established successfully!");
+            con.close();
+        }
+    }
+
 }

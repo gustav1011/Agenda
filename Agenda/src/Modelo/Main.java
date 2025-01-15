@@ -1,18 +1,14 @@
 package modelo;
 
-
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-//import Agenda;
-
 import java.util.*;
 
  //importei cada classe que eu usei só para deixar mais claro o que eu estou fazendo e usando
 
 public class Main {
   public static void main(String[] args) {
+    
+// RECUPERAR UMA CONEXÃO COM O BD, refatorar mais tarde
+    
     Scanner in = new Scanner(System.in);
 
     try {

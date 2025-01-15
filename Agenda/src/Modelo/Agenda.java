@@ -1,8 +1,10 @@
 package modelo;
 
 import java.util.*;
+import java.util.HashSet;
 
 public class Agenda {
+  private int id;
   private String nome;
   private HashSet<Contato> contatos;
 

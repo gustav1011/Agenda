@@ -1,7 +1,7 @@
 package modelo;
 
 public class Pessoa {// superclasse
-  //private int id;
+  private int id;
   private String nome;
   private String endereco;
   private String cpf;

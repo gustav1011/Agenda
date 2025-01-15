@@ -1,7 +1,7 @@
 -- Tabela Agenda
 CREATE TABLE Agenda (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único da agenda
+    nome VARCHAR(255) NOT NULL         -- Nome da agenda
 );
 
 -- Tabela Pessoa
@@ -20,5 +20,10 @@ CREATE TABLE Contato (
     agenda_id INT NOT NULL,
     FOREIGN KEY (id) REFERENCES Pessoa(id) ON DELETE CASCADE,
     FOREIGN KEY (agenda_id) REFERENCES Agenda(id) ON DELETE CASCADE
+);
+
+CREATE TABLE TipoCtt (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(50) NOT NULL
 );
     
