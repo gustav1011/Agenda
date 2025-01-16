@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Main {
   public static void main(String[] args) {
-    
+
 // RECUPERAR UMA CONEXÃO COM O BD, refatorar mais tarde
     
     Scanner in = new Scanner(System.in);
@@ -35,20 +35,13 @@ public class Main {
       }
       in.nextLine(); // Consome a nova linha após o inteiro
 
-      int escolhatipo;
+      String escolhatipo;
       for (int i = 0; i < nContatos; i++) {
-        System.out.println("Escolha o Tipo do contato:\n (1) FAMILIAR\n (2) COMERCIAL\n (3) RESIDENCIAL");
-        escolhatipo = in.nextInt();
-        in.nextLine(); // Consome a nova linha após o inteiro
-        if(escolhatipo == 1){
-          System.out.println("Tipo: Familiar");
-        } else if(escolhatipo == 2){
-          System.out.println("Tipo: Comercial");
-        } else if(escolhatipo == 3){
-          System.out.println("Tipo: Residencial");
-        } else{
-          System.out.println("Tipo inválido! Tente novamente.");
-        }
+        
+        System.out.println("Digite o tipo do contato: ");
+        escolhatipo = in.nextLine();
+        System.out.println("Tipo do contato: " + escolhatipo);
+
         System.out.println("--DIGITE AS INFORMAÇÔES DO CONTATO--");
         String nomeContato;
         String sobreNomeCtt;
@@ -93,7 +86,7 @@ public class Main {
             System.out.println("Número inválido, apenas números são aceitos, digite novamente!");
           }
         }
-        Contato ctt1 = new Contato(nomeContato, enderecoCtt, cpfCtt, email, telefone);
+        Contato ctt1 = new Contato(escolhatipo,nomeContato, enderecoCtt, cpfCtt, email, telefone);
         contatos.add(ctt1);
       }
 
