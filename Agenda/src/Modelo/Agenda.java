@@ -13,6 +13,9 @@ public class Agenda {
     this.contatos = new HashSet<Contato>();
   }
 
+  public Agenda(){}
+
+
   public String getNome() {
     return nome;
   }

@@ -9,59 +9,67 @@ import modelo.Contato;
 public class AgendaDAO {
     // CRUD operations
 
-public void insert (Agenda agenda){
-    // Save the agenda in the database
-
-    String sqlAgenda = "INSERT INTO Agenda (nome) VALUES (?)";
-    String sqlContato = "INSERT INTO Contato (nome, email, telefone, tipo_ctt_id, agenda_id) VALUES (?, ?, ?, ?, ?)";
-
-
-    Connection conn = null;
+    public void insert(Agenda agenda) {
+        // SQL de inserção na tabela Agenda
+        String sqlAgenda = "INSERT INTO Agenda (nome) VALUES (?)";
     
-    PreparedStatement pstmAgenda  = null;
-    PreparedStatement pstmContato = null;
-
-    ResultSet rs = null;
-
-    try {
-        // conexao com o banco de dados feita para o operação
-        conn = ConnectionFactory.connectionToMyDb();
-
-        pstmAgenda  = (PreparedStatement) conn.prepareStatement(sqlAgenda,PreparedStatement.RETURN_GENERATED_KEYS); // Para recuperar o ID gerado;
-        pstmAgenda.setString(1, agenda.getNome());
-        pstmAgenda.execute();
-
-        rs = pstmAgenda.getGeneratedKeys();
+        // SQL de inserção na tabela Contato
+        String sqlContato = "INSERT INTO Contato (nome, email, telefone, tipo_ctt, agenda_id) VALUES (?, ?, ?, ?, ?)";  
+    
+        Connection conn = null;
+        PreparedStatement pstmAgenda = null;
+        PreparedStatement pstmContato = null; 
+        ResultSet rs = null;
+    
+        try {
+            // Conectar ao banco de dados
+            conn = ConnectionFactory.connectionToMyDb();
+            conn.setAutoCommit(false);  // Desabilitar auto-commit para controlar a transação
+    
+            // Inserir na tabela Agenda
+            pstmAgenda = conn.prepareStatement(sqlAgenda, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstmAgenda.setString(1, agenda.getNome());
+            pstmAgenda.execute();
+    
+            // Recuperar o ID da agenda gerada
+            rs = pstmAgenda.getGeneratedKeys();
             int agendaId = 0;
             if (rs.next()) {
-                agendaId = rs.getInt(1); // Recupera o ID gerado
+                agendaId = rs.getInt(1); // Recupera o ID da agenda gerado
             }
-
+    
+            // Inserir os contatos na tabela Contato com o agenda_id associando os contatos à agenda
+            pstmContato = conn.prepareStatement(sqlContato);
+    
             for (Contato contato : agenda.getContatos()) {
                 pstmContato.setString(1, contato.getNome());
                 pstmContato.setString(2, contato.getEmail());
                 pstmContato.setString(3, contato.getTelefone());
                 pstmContato.setString(4, contato.getTipoCtt()); // TipoCtt é uma enum com ID
-                pstmContato.setInt(5, agendaId); // Associar o contato à agenda usando o ID recuperado
-
-                pstmContato.addBatch(); // Adiciona ao batch de inserção
+                pstmContato.setInt(5, agendaId); // Associar o contato à agenda usando o ID gerado
+    
+                pstmContato.executeUpdate(); // Executa a inserção individualmente para cada contato
             }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }   finally{
-try {
-    if(pstmAgenda!= null){
-        pstmAgenda.close();
+    
+            // Commit das transações se tudo ocorrer corretamente
+            conn.commit();
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                if (conn != null) conn.rollback(); // Em caso de erro, realizar rollback
+            } catch (Exception rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmAgenda != null) pstmAgenda.close();
+                if (pstmContato != null) pstmContato.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-
-    if(conn!= null){
-        conn.close();
-    }
-} catch (Exception e) {
-   e.printStackTrace();
-     }
-   }
- }
-
 }
