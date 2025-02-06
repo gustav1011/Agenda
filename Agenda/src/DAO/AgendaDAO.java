@@ -1,10 +1,10 @@
 package DAO;
-import connection.ConnectionFactory;// importação do pacote connection.ConnectionFactory em específico para fazer a conexão com o BD
-import java.sql.Connection;// importação do pacote modelo.Agenda em específico
+import Modelo.Agenda;// importação do pacote connection.ConnectionFactory em específico para fazer a conexão com o BD
+import Modelo.Contato;// importação do pacote modelo.Agenda em específico
+import connection.ConnectionFactory;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Modelo.Agenda;
-import Modelo.Contato;
 
 public class AgendaDAO {
 
@@ -119,8 +119,47 @@ public class AgendaDAO {
     //realizar os try-catch para as operaçoes select a cima
     
 
-    public void Update(Agenda agenda){
-        String sqlUpdate = "UPDATE Agenda SET id = (?), nome = (?) WHERE (?);"; // arrumar a estrutura da query
+    public void UpdateName(Agenda agenda, int id, String nome){
+        String sqlUpdate = "UPDATE Agenda SET nome = ? WHERE id = ?"; // arrumar a estrutura da query
+
+        PreparedStatement pstmAgendaUpdate = null;
+        ResultSet rsUpdate = null;  
+       
+        try {
+            conn = ConnectionFactory.connectionToMyDb();//conectar ao banco de dados
+
+            pstmAgendaUpdate = conn.prepareStatement(sqlUpdate);
+            pstmAgendaUpdate.setString(1, nome);
+            pstmAgendaUpdate.setInt(2, id);
+
+            pstmAgendaUpdate.executeUpdate();
+
+            conn.commit();
+                        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateId(Agenda agenda,int id, String nome){
+       String sqlUpadteId = "UPDATE Agenda SET id = ? WHERE nome = ?";
+
+       
+       PreparedStatement pstmAgendaUpdateId = null;
+       ResultSet rsUpdateId = null;
+
+       try {
+          conn = ConnectionFactory.connectionToMyDb();
+          
+          pstmAgendaUpdateId = conn.prepareStatement(sqlUpadteId);
+          pstmAgendaUpdateId.setInt(1, id);
+          pstmAgendaUpdateId.setString(2, nome);   
+          
+          pstmAgendaUpdateId.executeUpdate();
+   
+        } catch (Exception e) {
+            e.printStackTrace();
+       }
     }
 
 }

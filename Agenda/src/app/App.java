@@ -1,8 +1,7 @@
 package app;
 
-import Modelo.*;
 import DAO.AgendaDAO;
-
+import Modelo.*;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -47,25 +46,14 @@ public class App {
             System.out.print("Nome: ");
             escolhanome = in.nextLine();
         
-            System.out.println("Email: ");
+            System.out.print("Email: ");
             escolhaemail = in.nextLine();
 
-            System.out.println("Telefone: ");
+            System.out.print("Telefone: ");
             escolhaTel = in.nextLine();
 
-            System.out.println("Tipo de Contato (Ex: FAMILIA, AMIGO): ");
+            System.out.print("Tipo de Contato (Ex: FAMILIA, AMIGO): ");
             escolhatipo = in.nextLine();
-
-            //contato.setNome(in.nextLine());
-            //System.out.print("Email: ");
-
-            //contato.setEmail(in.nextLine());
-            //System.out.print("Telefone: ");
-
-            //contato.setTelefone(in.nextLine());
-
-            //System.out.print("Tipo de Contato (Ex: FAMILIA, AMIGO): ");
-            //contato.setTipoCtt(in.nextLine()); // Adapte conforme a enum
 
             Contato ctt1 = new Contato(escolhanome, escolhaemail,escolhaTel,escolhatipo);
             contatos.add(ctt1);
@@ -78,21 +66,21 @@ public class App {
         System.out.println("Agenda salva com sucesso!");
         }else{
 
-     System.out.println("Deseja buscar alguma Agenda no Banco de Dados? (sim/não)");
+        System.out.println("Deseja buscar alguma Agenda no Banco de Dados? (sim/não)");
         String resposta1 = in.nextLine();
 
     while (!resposta1.equals("sim") && !resposta1.equals("não")) {
-            System.out.println("Resposta inválida. Por favor, digite 'sim' ou 'não'.");
-            resposta1 = in.nextLine();
+        System.out.println("Resposta inválida. Por favor, digite 'sim' ou 'não'.");
+        resposta1 = in.nextLine();
         }
        if(resposta1.equalsIgnoreCase("sim")){
         System.out.println("Você deseja buscar por ID ou por Nome?");
         String tipoBusca = in.nextLine();
-        while (!tipoBusca.equals("id") && !tipoBusca.equals("nome")){
+    while (!tipoBusca.equals("id") && !tipoBusca.equals("nome")){
         System.out.println("Opção inválida. Por favor, digite 'id' ou 'nome'.");
             if(tipoBusca.equalsIgnoreCase("id")){
-    System.out.println("Digite a id que busca:");
-    int idbuscada = in.nextInt();
+        System.out.println("Digite a id que busca:");
+        int idbuscada = in.nextInt();
         agendaDAO.selectById(idbuscada, agenda); //operação crud que faz select por id
 
     }else if(tipoBusca.equalsIgnoreCase("nome")){
@@ -105,6 +93,30 @@ public class App {
          System.out.println("Você escolheu não buscar uma agenda no momento.");
         }
     }
+    // Atualização do nome da Agenda
+         System.out.println("Deseja atualizar alguma Agenda? (sim/não)");
+         String resposta2 = in.nextLine();
+    while (!resposta2.equals("sim") && !resposta2.equals("não")) {
+          System.out.println("Resposta inválida. Por favor, digite 'sim' ou 'não'.");
+          resposta2 = in.nextLine();
+
+          if(resposta2.equalsIgnoreCase("sim")){
+            System.out.println("Digite o nome da agenda que deseja atualizar:");
+            String nomeBuscado = in.nextLine();
+            agendaDAO.selectByName(nomeBuscado,agenda);
+
+            System.out.println("Digite o novo nome da agenda e sua id:");
+            String respostaNome = in.nextLine();
+            int respostaId = in.nextInt();
+            agendaDAO.UpdateName(agenda, respostaId,respostaNome);
+            System.out.println("Agenda atualizada com sucesso!");
+            
+          } else{
+            System.out.println("Você escolheu não atualizar nenhuma agenda no momento.");
+          }
+
+
         in.close();
     }
+  }
 }

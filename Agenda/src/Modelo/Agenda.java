@@ -32,6 +32,14 @@ public class Agenda {
     this.contatos = contatos;
   }
 
+  public int getId(){
+    return id;
+  }
+
+  public void setId(int id){
+    this.id = id;
+  }
+
   @Override
   public String toString() {
     StringBuilder info = new StringBuilder("Nome da Agenda: " + this.nome + "\n");
