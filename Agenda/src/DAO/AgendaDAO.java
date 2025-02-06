@@ -3,11 +3,15 @@ import connection.ConnectionFactory;// importação do pacote connection.Connect
 import java.sql.Connection;// importação do pacote modelo.Agenda em específico
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import modelo.Agenda;
-import modelo.Contato;
+import Modelo.Agenda;
+import Modelo.Contato;
 
 public class AgendaDAO {
-    // CRUD operations
+
+    private static Connection conn = null; /// variavel de classe estatica
+
+
+        // CRUD operations
 
     public void insert(Agenda agenda) {
         // SQL de inserção na tabela Agenda
@@ -16,7 +20,7 @@ public class AgendaDAO {
         // SQL de inserção na tabela Contato
         String sqlContato = "INSERT INTO Contato (nome, email, telefone, tipo_ctt, agenda_id) VALUES (?, ?, ?, ?, ?)";  
     
-        Connection conn = null;
+      //  Connection conn = null;
         PreparedStatement pstmAgenda = null;
         PreparedStatement pstmContato = null; 
         ResultSet rs = null;
@@ -72,4 +76,51 @@ public class AgendaDAO {
             }
         }
     }
+
+    public void selectByName(String nome, Agenda agenda){
+        String sqlSelNome = "SELECT id FROM Agenda WHERE nome = ?";
+
+        PreparedStatement pstmAgendaSelNome = null;
+        ResultSet rsSelNome = null;
+
+        
+            // Conectar ao banco de dados
+                 try {
+            conn = ConnectionFactory.connectionToMyDb();
+
+            pstmAgendaSelNome = conn.prepareStatement(sqlSelNome);
+            pstmAgendaSelNome.setString(1, nome);
+            rsSelNome = pstmAgendaSelNome.executeQuery();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void selectById(int id, Agenda agenda){
+        String sqlSelId = "SELECT nome FROM Agenda WHERE id = ?";
+
+        PreparedStatement pstmAgendaSelId = null;
+        ResultSet rsSelId = null;
+
+         try{
+        conn = ConnectionFactory.connectionToMyDb();
+
+        pstmAgendaSelId = conn.prepareStatement(sqlSelId);
+        pstmAgendaSelId.setInt(1,id);
+        rsSelId = pstmAgendaSelId.executeQuery();
+
+         }catch(Exception e){
+            e.printStackTrace();
+         }
+         
+    }    
+    //realizar os try-catch para as operaçoes select a cima
+    
+
+    public void Update(Agenda agenda){
+        String sqlUpdate = "UPDATE Agenda SET id = (?), nome = (?) WHERE (?);"; // arrumar a estrutura da query
+    }
+
 }
