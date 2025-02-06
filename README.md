@@ -1,10 +1,10 @@
-##📒 Projeto: Sistema de Gerenciamento de Agenda
+#📒 Projeto: Sistema de Gerenciamento de Agenda
 
 📌 Descrição
 
 Este projeto consiste em um sistema de gerenciamento de agendas e contatos, permitindo a criação, armazenamento e consulta de agendas no banco de dados. Ele utiliza a arquitetura DAO para facilitar a interação com o banco de dados.
 
-##🚀 Tecnologias Utilizadas
+#🚀 Tecnologias Utilizadas
 
 Java (versão 8 ou superior)
 
