@@ -15,16 +15,28 @@ MySQL (como banco de dados relacional)
 ##🔧 Funcionalidades
 
 Criar uma nova agenda com múltiplos contatos.
+# 📒 **Projeto: Sistema de Gerenciamento de Agenda**
 
-Adicionar contatos à agenda durante a criação.
+## 📌 **Descrição**
 
-Buscar agendas no banco de dados:
+Este projeto consiste em um **sistema de gerenciamento de agendas e contatos**, permitindo a criação, armazenamento e consulta de agendas em um banco de dados. Ele utiliza a arquitetura **DAO** para facilitar a interação com o banco de dados.
 
-Por ID
+## 🚀 **Tecnologias Utilizadas**
 
-Por Nome
+- **Java** (versão 8 ou superior)
+- **JDBC** (para comunicação com o banco de dados)
+- **MySQL** (como banco de dados relacional)
 
-##🗂 Estrutura do Projeto
+## 🔧 **Funcionalidades**
+
+- ✅ Criar uma nova agenda com múltiplos contatos.
+- ✅ Adicionar contatos à agenda durante a criação.
+- 🔍 Buscar agendas no banco de dados:
+  - Por **ID**
+  - Por **Nome**
+
+## 🗂 **Estrutura do Projeto**
+
 
 📂 src/ ├── 📁 app/ # Contém a classe principal (App.java) ├── 📁 DAO/ # Contém a classe de acesso ao banco de dados (AgendaDAO.java) ├── 📁 Modelo/ # Contém as classes de modelo (Agenda.java, Contato.java)
 
