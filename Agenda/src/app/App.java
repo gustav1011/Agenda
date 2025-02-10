@@ -115,8 +115,21 @@ public class App {
             System.out.println("Você escolheu não atualizar nenhuma agenda no momento.");
           }
 
+          System.out.println("Deseja Deletar alguma Agenda? (sim/não)");
+         String resposta3 = in.nextLine();
+    while (!resposta3.equals("sim") && !resposta3.equals("não")) {
+          System.out.println("Resposta inválida. Por favor, digite 'sim' ou 'não'.");
+          resposta3= in.nextLine();
 
+          if(resposta3.equalsIgnoreCase("sim")){
+            System.out.println("Digite o nome da agenda que deseja Deletar:");
+            String nomeDeletado = in.nextLine();
+            agendaDAO.delete(nomeDeletado);
+          
         in.close();
+    
+     }
     }
-  }
+   }
+ }
 }

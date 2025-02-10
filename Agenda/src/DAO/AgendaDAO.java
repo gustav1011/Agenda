@@ -49,9 +49,9 @@ public class AgendaDAO {
                 pstmContato.setString(1, contato.getNome());
                 pstmContato.setString(2, contato.getEmail());
                 pstmContato.setString(3, contato.getTelefone());
-                pstmContato.setString(4, contato.getTipoCtt()); // TipoCtt é uma enum com ID
-                pstmContato.setInt(5, agendaId); // Associar o contato à agenda usando o ID gerado
-    
+                pstmContato.setString(4, contato.getTipoCtt()); 
+                pstmContato.setInt(5, agendaId); 
+
                 pstmContato.executeUpdate(); // Executa a inserção individualmente para cada contato
             }
     
@@ -160,6 +160,26 @@ public class AgendaDAO {
         } catch (Exception e) {
             e.printStackTrace();
        }
+    }
+
+    public void delete( String nome){
+        String sqlDeleteByNome = "DELETE FROM Agenda WHERE nome = ?";
+
+        PreparedStatement pstmAgendaDeleteBYnome = null;
+        //ResultSet rsDeleteByNome = null;
+
+        try{
+            conn = ConnectionFactory.connectionToMyDb();
+
+            pstmAgendaDeleteBYnome = conn.prepareStatement(sqlDeleteByNome);
+            pstmAgendaDeleteBYnome.setString(1, nome);
+
+            pstmAgendaDeleteBYnome.executeUpdate();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
