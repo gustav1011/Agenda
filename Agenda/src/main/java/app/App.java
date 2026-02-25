@@ -1,9 +1,10 @@
 package app;
 
-import DAO.AgendaDAO;
-import Modelo.*;
+import dao.AgendaDAO;
 import java.util.HashSet;
 import java.util.Scanner;
+import modelo.Agenda;
+import modelo.Contato;
 
 public class App {
     public static void main(String[] args) {

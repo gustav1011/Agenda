@@ -1,7 +1,9 @@
-package DAO;
-import Modelo.Agenda;// importação do pacote connection.ConnectionFactory em específico para fazer a conexão com o BD
-import Modelo.Contato;// importação do pacote modelo.Agenda em específico
+package dao;
+
 import connection.ConnectionFactory;
+import modelo.Agenda;
+import modelo.Contato;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
