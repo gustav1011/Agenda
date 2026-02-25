@@ -14,6 +14,8 @@ public class Contato {
         this.tipoCtt = tipoCtt;
     }
 
+    public Contato(){}
+
     // Getters e setters
     public String getNome() {
         return nome;

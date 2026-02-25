@@ -1,5 +1,6 @@
 connection/ConnectionFactory.class
 modelo/Contato.class
 dao/AgendaDAO.class
-modelo/Agenda.class
 app/App.class
+dao/ContatoDAO.class
+modelo/Agenda.class

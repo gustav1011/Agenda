@@ -1,12 +1,11 @@
 package dao;
 
 import connection.ConnectionFactory;
-import modelo.Agenda;
-import modelo.Contato;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import modelo.Agenda;
+import modelo.Contato;
 
 public class AgendaDAO {
 
@@ -163,6 +162,10 @@ public class AgendaDAO {
             e.printStackTrace();
        }
     }
+
+
+    
+    
 
     public void delete( String nome){
         String sqlDeleteByNome = "DELETE FROM Agenda WHERE nome = ?";

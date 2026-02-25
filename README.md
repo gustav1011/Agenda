@@ -28,15 +28,15 @@ Este projeto consiste em um **sistema de gerenciamento de agendas e contatos**, 
 
 | **Operação** | **Método**                                                  |
 | ------------ | ----------------------------------------------------------- |
-| **Create**   | Inserção de uma nova agenda: `agendaDAO.insert(agenda)`      |
-| **Read**     | Busca por **ID** ou **Nome**:                                |
-|              | - `agendaDAO.selectById(id, agenda)`                         |
-|              | - `agendaDAO.selectByName(nome, agenda)`                     |
+| **Create**   | Inserção de uma nova agenda: `agendaDAO.insert(agenda)`     |
+| **Read**     | Busca por **ID** ou **Nome**:                               |
+|              | - `agendaDAO.selectById(id, agenda)`                        |
+|              | - `agendaDAO.selectByName(nome, agenda)`                    |
 | **Update**   | Em desenvolvimento: Não implementado nesta versão           |
 | **Delete**   | Em desenvolvimento: Não implementado nesta versão           |
 
 
-##📝 **Como Usar**
+## 📝 **Como Usar**
 
 -O programa perguntará se deseja adicionar uma nova agenda ao banco.
 
@@ -46,6 +46,6 @@ Este projeto consiste em um **sistema de gerenciamento de agendas e contatos**, 
 
 -O usuário poderá buscar por ID ou Nome.
 
-##👨‍💻 **Autor**
+## 👨‍💻 **Autor**
 
 Nome: Gustavo Munoz Dutra

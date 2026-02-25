@@ -1,6 +1,7 @@
 package app;
 
 import dao.AgendaDAO;
+import dao.ContatoDAO;
 import java.util.HashSet;
 import java.util.Scanner;
 import modelo.Agenda;
@@ -9,6 +10,7 @@ import modelo.Contato;
 public class App {
     public static void main(String[] args) {
         AgendaDAO agendaDAO = new AgendaDAO();
+        ContatoDAO contatoDAO = new ContatoDAO();
         Agenda agenda = new Agenda();
         HashSet<Contato> contatos = new HashSet<>();
         Scanner in = new Scanner(System.in);
@@ -83,10 +85,36 @@ public class App {
             agendaDAO.UpdateName(agenda, id, novoNome);
             System.out.println("Agenda atualizada com sucesso!");
         }
+
+        System.out.println("Deseja adicionar algum contato em alguma agenda?");
+        String resposta3 = in.nextLine();
+
+        if (resposta3.equalsIgnoreCase("sim")) {
+
+            System.out.print("Digite o ID da agenda: ");
+            int idAgenda = in.nextInt();
+            in.nextLine(); // consumir ENTER pendente
+
+            System.out.print("Nome do contato: ");
+            String nomeContato = in.nextLine();
+
+            System.out.print("Email: ");
+            String email = in.nextLine();
+
+            System.out.print("Telefone: ");
+            String telefone = in.nextLine();
+
+            System.out.print("Tipo de Contato (Ex: FAMILIA, AMIGO): ");
+            String tipo = in.nextLine();
+
+            contatoDAO.insertContato(idAgenda, nomeContato, email, telefone, tipo);
+
+            System.out.println("Contato adicionado à agenda com sucesso!");
+        }
         
         System.out.println("Deseja deletar alguma Agenda? (sim/não)");
-        String resposta3 = in.nextLine();
-        if (resposta3.equalsIgnoreCase("sim")) {
+        String resposta4 = in.nextLine();
+        if (resposta4.equalsIgnoreCase("sim")) {
             System.out.print("Digite o nome da agenda que deseja deletar: ");
             String nomeDeletado = in.nextLine();
             agendaDAO.delete(nomeDeletado);
