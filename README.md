@@ -38,13 +38,13 @@ Este projeto consiste em um **sistema de gerenciamento de agendas e contatos**, 
 
 ## 📝 **Como Usar**
 
--O programa perguntará se deseja adicionar uma nova agenda ao banco.
+- O programa perguntará se deseja adicionar uma nova agenda ao banco.
 
--Caso a resposta seja "sim", ele solicitará o nome da agenda e a quantidade de contatos a serem adicionados.
+- Caso a resposta seja "sim", ele solicitará o nome da agenda e a quantidade de contatos a serem adicionados.
 
--Após a inserção, o programa perguntará se deseja buscar uma agenda já cadastrada.
+- Após a inserção, o programa perguntará se deseja buscar uma agenda já cadastrada.
 
--O usuário poderá buscar por ID ou Nome.
+- O usuário poderá buscar por ID ou Nome.
 
 ## 👨‍💻 **Autor**
 
